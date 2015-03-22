@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- Web.xml file for Web Server -->
+<web-app version="2.5">
+	<display-name>Class Not Found Generator</display-name>
+	<listener>
+		<listener-class>com.avadyne.TestcaseContextListener</listener-class>
+	</listener>
+</web-app>

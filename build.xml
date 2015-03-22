@@ -1,0 +1,36 @@
+<!-- RADE2 deploy.xml Copyright (c) 2012, Avadyne Health, inc. Author: Austin 
+	Jones Created: 05-07/2012 -->
+
+<project name="build" basedir=".">
+	<target name="clean" description="Clean build environment">
+		<delete dir="bin" quiet="true" />
+		<delete dir="dist" quiet="true" />
+	</target>
+
+	<!-- Executable Targets -->
+	<target name="compile" description="Compile web application">
+		<mkdir dir="bin" />
+		<javac debug="true" srcdir="src/" destdir="bin/" source="1.6" target="1.6"
+			includeantruntime="false">
+			<classpath>
+				<fileset dir="lib_build">
+					<filename name="**/*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="distribute" depends="clean,compile" description="generate jar">
+		<mkdir dir="dist" />
+		
+		<war destfile="dist/ClassNotFoundGenerator.war" webxml="web/web.xml">
+			<metainf file="web/context.xml" />
+
+			<classes dir="bin/" />
+
+			<fileset dir="web/">
+				<include name="**" />
+			</fileset>
+		</war>
+	</target>
+</project>
